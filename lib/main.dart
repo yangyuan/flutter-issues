@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'demo.dart';
+
 void main() {
   runApp(const MyApp());
+
+  Demo.demo();
 }
 
 class MyApp extends StatelessWidget {
@@ -95,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const CircularProgressIndicator(),
             const Text(
               'You have pushed the button this many times:',
             ),
