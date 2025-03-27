@@ -67,6 +67,20 @@ class MainApp extends StatelessWidget {
                     'assets/assets/audio/draw_card.wav',
                   );
                 },
+                child: Text('Reset AudioSources'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.red),
+                onPressed: () async {
+                  soloud = SoLoud.instance;
+                  await soloud.init();
+                  drawCard = await soloud.loadAsset(
+                    'assets/audio/draw_card.wav',
+                  );
+                  drawCardUrl = await soloud.loadUrl(
+                    'assets/assets/audio/draw_card.wav',
+                  );
+                },
                 child: Text('Reset SoLoud'),
               ),
             ],
