@@ -40,22 +40,38 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.blue,
-              disabledForegroundColor: Colors.red,
-            ),
-            onPressed: () async {
-              if (drawCard != null) {
-                await soloud.play(drawCard!);
-              }
-            },
-            onLongPress: () async {
-              if (drawCardUrl != null) {
-                await soloud.play(drawCardUrl!);
-              }
-            },
-            child: Text('TextButton'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                onPressed: () async {
+                  if (drawCard != null) {
+                    await soloud.play(drawCard!);
+                  }
+                },
+                onLongPress: () async {
+                  if (drawCardUrl != null) {
+                    await soloud.play(drawCardUrl!);
+                  }
+                },
+                child: Text('Play Sound (Long Press to use URL source)'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.red),
+                onPressed: () async {
+                  soloud = SoLoud.instance;
+                  await soloud.init();
+                  drawCard = await soloud.loadAsset(
+                    'assets/audio/draw_card.wav',
+                  );
+                  drawCardUrl = await soloud.loadUrl(
+                    'assets/assets/audio/draw_card.wav',
+                  );
+                },
+                child: Text('Reset SoLoud'),
+              ),
+            ],
           ),
         ),
       ),
