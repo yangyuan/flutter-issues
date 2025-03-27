@@ -5,6 +5,7 @@ import 'package:logging/logging.dart';
 
 late SoLoud soloud;
 AudioSource? drawCard;
+AudioSource? drawCardUrl;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ void main() async {
   soloud = SoLoud.instance;
   await soloud.init();
   drawCard = await soloud.loadAsset('assets/audio/draw_card.wav');
+  drawCardUrl = await soloud.loadUrl('assets/assets/audio/draw_card.wav');
 
   runApp(const MainApp());
 }
@@ -49,8 +51,8 @@ class MainApp extends StatelessWidget {
               }
             },
             onLongPress: () async {
-              if (drawCard != null) {
-                await soloud.play(drawCard!);
+              if (drawCardUrl != null) {
+                await soloud.play(drawCardUrl!);
               }
             },
             child: Text('TextButton'),
