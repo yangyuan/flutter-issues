@@ -67,7 +67,7 @@ class MainApp extends StatelessWidget {
                     'assets/assets/audio/draw_card.wav',
                   );
                 },
-                child: Text('Reset AudioSources'),
+                child: Text('Reload AudioSources'),
               ),
               TextButton(
                 style: TextButton.styleFrom(foregroundColor: Colors.red),
