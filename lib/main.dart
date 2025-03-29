@@ -83,6 +83,17 @@ class MainApp extends StatelessWidget {
                 },
                 child: Text('Reset SoLoud'),
               ),
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.green),
+                onPressed: () async {
+                  soloud = SoLoud.instance;
+                  var devices = soloud.listPlaybackDevices();
+                  for (var device in devices) {
+                    print(device.toString());
+                  }
+                },
+                child: Text('Diagnosis'),
+              ),
             ],
           ),
         ),
