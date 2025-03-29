@@ -86,8 +86,11 @@ class MainApp extends StatelessWidget {
               TextButton(
                 style: TextButton.styleFrom(foregroundColor: Colors.green),
                 onPressed: () async {
+                  print("start diagnosis");
                   soloud = SoLoud.instance;
+                  print("start listPlaybackDevices");
                   var devices = soloud.listPlaybackDevices();
+                  print("end listPlaybackDevices");
                   for (var device in devices) {
                     print(device.id);
                     print(device.isDefault);
