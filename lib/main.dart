@@ -89,7 +89,9 @@ class MainApp extends StatelessWidget {
                   soloud = SoLoud.instance;
                   var devices = soloud.listPlaybackDevices();
                   for (var device in devices) {
-                    print(device.toString());
+                    print(device.id);
+                    print(device.isDefault);
+                    print(device.name);
                   }
                 },
                 child: Text('Diagnosis'),
