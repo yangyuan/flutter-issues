@@ -60,6 +60,14 @@ class MainApp extends StatelessWidget {
               TextButton(
                 style: TextButton.styleFrom(foregroundColor: Colors.red),
                 onPressed: () async {
+                  soloud = SoLoud.instance;
+                  await soloud.init();
+                },
+                child: Text('Re-init SoLoud'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.red),
+                onPressed: () async {
                   drawCard = await soloud.loadAsset(
                     'assets/audio/draw_card.wav',
                   );
