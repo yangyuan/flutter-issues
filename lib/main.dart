@@ -118,7 +118,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
                 onPressed: () {
                   playCard();
                 },
-                child: Text('Play Sound (Async path)'),
+                child: Text('Play Sound (Async path).'),
               ),
               TextButton(
                 style: TextButton.styleFrom(foregroundColor: Colors.red),
