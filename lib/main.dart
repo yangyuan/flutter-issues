@@ -6,6 +6,33 @@ import 'package:logging/logging.dart';
 late SoLoud soloud;
 AudioSource? drawCard;
 AudioSource? drawCardUrl;
+Future<void> audioReady = Future.value();
+final Map<String, Future<AudioSource>> audioSources = {};
+
+Future<void> playCard() async {
+  await playAudio('draw_card.wav');
+}
+
+Future<void> playAudio(String id) async {
+  await playAsset('assets/audio/$id');
+}
+
+Future<void> playAsset(String assetPath) async {
+  await audioReady;
+  final source = await loadSource(assetPath);
+  soloud.play(source);
+}
+
+Future<AudioSource> loadSource(String assetPath) async {
+  final cached = audioSources[assetPath];
+  if (cached != null) {
+    return cached;
+  }
+
+  final sourceFuture = soloud.loadAsset(assetPath);
+  audioSources[assetPath] = sourceFuture;
+  return await sourceFuture;
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +52,8 @@ void main() async {
   });
 
   soloud = SoLoud.instance;
-  await soloud.init();
+  audioReady = soloud.init();
+  await audioReady;
   drawCard = await soloud.loadAsset('assets/audio/draw_card.wav');
   drawCardUrl = await soloud.loadUrl('assets/assets/audio/draw_card.wav');
 
@@ -84,6 +112,13 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
                   }
                 },
                 child: Text('Play Sound (Long Press to use URL source.)'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                onPressed: () {
+                  playCard();
+                },
+                child: Text('Play Sound (Async path)'),
               ),
               TextButton(
                 style: TextButton.styleFrom(foregroundColor: Colors.red),
