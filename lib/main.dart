@@ -83,7 +83,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
                     soloud.play(drawCardUrl!);
                   }
                 },
-                child: Text('Play Sound (Long Press to use URL source)'),
+                child: Text('Play Sound (Long Press to use URL source.)'),
               ),
               TextButton(
                 style: TextButton.styleFrom(foregroundColor: Colors.red),
