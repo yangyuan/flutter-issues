@@ -75,12 +75,12 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
                 style: TextButton.styleFrom(foregroundColor: Colors.blue),
                 onPressed: () async {
                   if (drawCard != null) {
-                    await soloud.play(drawCard!);
+                    soloud.play(drawCard!);
                   }
                 },
                 onLongPress: () async {
                   if (drawCardUrl != null) {
-                    await soloud.play(drawCardUrl!);
+                    soloud.play(drawCardUrl!);
                   }
                 },
                 child: Text('Play Sound (Long Press to use URL source)'),
