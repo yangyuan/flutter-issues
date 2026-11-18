@@ -9,10 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_soloud:
-    git:
-      url: https://github.com/alnitak/flutter_soloud.git
-      ref: dev
+  flutter_soloud: 5.2.0
   logging: ^1.3.0
 
 dev_dependencies:
